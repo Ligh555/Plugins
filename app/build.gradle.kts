@@ -2,11 +2,11 @@ plugins {
     alias(libs.plugins.nowinandroid.android.application)
     alias(libs.plugins.nowinandroid.android.application.flavors)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("plugins.demo")
+    id("plugins.res.dup")
 }
 android {
     defaultConfig {
-        applicationId = "com.ligh.plugins"
+        applicationId = "com.ligh"
         versionCode = 8
         versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
         vectorDrawables {
@@ -29,7 +29,7 @@ android {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
-    namespace = "com.ligh.plugins"
+    namespace = "com.ligh"
 }
 
 dependencies {

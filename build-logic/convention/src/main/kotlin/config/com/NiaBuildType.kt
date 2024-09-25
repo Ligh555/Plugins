@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-package com.google.samples.apps.nowinandroid
+package config.com
 
 /**
  * This is shared between :app and :benchmarks module to provide configurations type safety.

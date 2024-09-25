@@ -14,18 +14,12 @@
  *   limitations under the License.
  */
 
-import com.android.build.api.dsl.ApplicationExtension
-import com.google.samples.apps.nowinandroid.configureFlavors
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
+package config.com
 
-class AndroidApplicationFlavorsConventionPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
-        with(target) {
-            extensions.configure<ApplicationExtension> {
-                configureFlavors(this)
-            }
-        }
-    }
-}
+import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalog
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.getByType
+
+val Project.libs
+    get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")

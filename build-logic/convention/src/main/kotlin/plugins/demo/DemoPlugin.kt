@@ -1,4 +1,4 @@
-package com.ligh.plugins.demo
+package plugins.demo
 
 import com.android.build.gradle.AppExtension
 import org.gradle.api.Plugin

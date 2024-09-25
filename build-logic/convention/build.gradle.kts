@@ -37,23 +37,28 @@ tasks.withType<KotlinCompile>().configureEach {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
+    implementation(project(":plugins:resdup"))
 }
 
 gradlePlugin {
     plugins {
-
+        val configPath = "config."
         register("androidApplication") {
-            id = "nowinandroid.android.application"
-            implementationClass = "AndroidApplicationConventionPlugin"
+            id = "config.android.application"
+            implementationClass = configPath + "AndroidApplicationConventionPlugin"
         }
         register("androidFlavors") {
-            id = "nowinandroid.android.application.flavors"
-            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
+            id = "config.android.application.flavors"
+            implementationClass = configPath + "AndroidApplicationFlavorsConventionPlugin"
         }
-        val customPath = "com.ligh.plugins."
+        val customPath = "plugins."
         register("demo") {
             id = "plugins.demo"
             implementationClass = customPath + "demo.DemoPlugin"
+        }
+        register("resdup") {
+            id = "plugins.res.dup"
+            implementationClass = customPath + "res.DupConventionPlugin"
         }
     }
 }

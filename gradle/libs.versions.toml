@@ -76,9 +76,10 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 
 # Plugins defined by this project
-nowinandroid-android-application = { id = "nowinandroid.android.application", version = "unspecified" }
-nowinandroid-android-application-flavors = { id = "nowinandroid.android.application.flavors", version = "unspecified" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
+nowinandroid-android-application = { id = "config.android.application", version = "unspecified" }
+nowinandroid-android-application-flavors = { id = "config.android.application.flavors", version = "unspecified" }
+
 

@@ -50,5 +50,10 @@ gradlePlugin {
             id = "nowinandroid.android.application.flavors"
             implementationClass = "AndroidApplicationFlavorsConventionPlugin"
         }
+        val customPath = "com.ligh.plugins."
+        register("demo") {
+            id = "plugins.demo"
+            implementationClass = customPath + "demo.DemoPlugin"
+        }
     }
 }

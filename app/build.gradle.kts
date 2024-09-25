@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.nowinandroid.android.application)
     alias(libs.plugins.nowinandroid.android.application.flavors)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("plugins.demo")
 }
 android {
     defaultConfig {

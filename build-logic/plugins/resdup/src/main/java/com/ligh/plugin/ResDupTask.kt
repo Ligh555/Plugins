@@ -3,6 +3,7 @@ package com.ligh.plugin
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.internal.res.LinkApplicationAndroidResourcesTask
+import com.android.build.gradle.internal.tasks.OptimizeResourcesTask
 import org.gradle.api.Project
 import pink.madis.apk.arsc.ResourceFile
 import pink.madis.apk.arsc.ResourceTableChunk
@@ -40,57 +41,76 @@ object ResDupTask {
                     val byType = project.extensions.getByType(AppExtension::class.java)
 
                     byType.applicationVariants.forEach { variant ->
-
                         val variantName = variant.name.capitalize()
-                        val processResource =
-                            project.tasks.getByName("process${variantName}Resources")
-                        // 获取资源打包输出的文件夹，
-                        val resourcesTask =
-                            processResource as LinkApplicationAndroidResourcesTask
-                        processResource.doLast {
-                            val files = resourcesTask.resPackageOutputFolder.asFileTree.files
-                            files.filter { file ->
-                                file.name.endsWith(".ap_")
-                            }.forEach { apFile ->
-                                val mapping =
-                                    "${project.buildDir}${File.separator}ResDeduplication${File.separator}mapping${File.separator}"
-                                File(mapping).takeIf { fileMapping ->
-                                    !fileMapping.exists()
-                                }?.apply {
-                                    mkdirs()
-                                }
-
-                                val originalLength = apFile.length()
-                                val resCompressFile = File(mapping, REPEAT_RES_MAPPING)
-                                val unZipPath = "${apFile.parent}${File.separator}resCompress"
-                                ZipFile(apFile).unZipFile(unZipPath)
-
-                                // 删除重复图片
-                                deleteRepeatRes(
-                                    unZipPath,
-                                    resCompressFile,
-                                    apFile,
-                                    repeatResConfig?.whiteListName
-                                )
-                                apFile.delete()
-
-
-                                println("---f_tag, file name = ${apFile.name}")
-                                ZipOutputStream(apFile.outputStream()).use { output ->
-                                    output.zip(unZipPath, File(unZipPath))
-                                }
-
-                                val lastLength = apFile.length()
-                                print("优化结束缩减：${lastLength - originalLength}")
-                                deleteDir(File(unZipPath))
+                        var isShirk = false
+                        val shirkTask =
+                            project.tasks.findByName("optimize${variantName}Resources") as? OptimizeResourcesTask
+                        shirkTask?.let { task ->
+                            isShirk = true
+                            task.doLast {
+                                this as OptimizeResourcesTask
+                                this.optimizedProcessedRes.asFile.get().listFiles()
+                                    ?.filter { file ->
+                                        file.name.endsWith(".ap_")
+                                    }?.forEach { apFile ->
+                                        reMapping(project, apFile, repeatResConfig)
+                                    }
                             }
                         }
-
+                        if (!isShirk) {
+                            val processResource =
+                                project.tasks.getByName("process${variantName}Resources")
+                            // 获取资源打包输出的文件夹，
+                            val resourcesTask =
+                                processResource as LinkApplicationAndroidResourcesTask
+                            processResource.doLast {
+                                val files = resourcesTask.resPackageOutputFolder.asFileTree.files
+                                files.filter { file ->
+                                    file.name.endsWith(".ap_")
+                                }.forEach { apFile ->
+                                    reMapping(project, apFile, repeatResConfig)
+                                }
+                            }
+                        }
                     }
                 }
 
             }
         }
+    }
+
+    private fun reMapping(project: Project, apFile: File, repeatResConfig: RepeatResConfig?) {
+        val mapping =
+            "${project.buildDir}${File.separator}ResDeduplication${File.separator}mapping${File.separator}"
+        File(mapping).takeIf { fileMapping ->
+            !fileMapping.exists()
+        }?.apply {
+            mkdirs()
+        }
+
+        val originalLength = apFile.length()
+        val resCompressFile = File(mapping, REPEAT_RES_MAPPING)
+        val unZipPath = "${apFile.parent}${File.separator}resCompress"
+        ZipFile(apFile).unZipFile(unZipPath)
+
+        // 删除重复图片
+        deleteRepeatRes(
+            unZipPath,
+            resCompressFile,
+            apFile,
+            repeatResConfig?.whiteListName
+        )
+        apFile.delete()
+
+
+        println("---f_tag, file name = ${apFile.name}")
+        ZipOutputStream(apFile.outputStream()).use { output ->
+            output.zip(unZipPath, File(unZipPath))
+        }
+
+        val lastLength = apFile.length()
+        print("优化结束缩减：${lastLength - originalLength}")
+        deleteDir(File(unZipPath))
     }
 
     private fun deleteDir(file: File?): Boolean {

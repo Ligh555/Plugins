@@ -10,7 +10,7 @@ import java.io.File
 
 class ResPlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        println("ResPlugin")
+        println("*****************DupRes Plugin apply*********************")
         val isLibrary = project.plugins.hasPlugin("com.android.library")
         val variants = if (isLibrary) {
             (project.property("android") as LibraryExtension).libraryVariants

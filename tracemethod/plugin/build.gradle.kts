@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+    `maven-publish`
 }
 
 repositories {
@@ -33,3 +34,40 @@ dependencies {
     implementation("commons-io:commons-io:2.11.0")
 }
 
+gradlePlugin {
+    plugins {
+        register("test") {
+            id = "com.ligh.tracemethod"
+            implementationClass = "cn.cxzheng.tracemanplugin.TraceManPlugin"
+            description = "方法耗时分析插桩插件"
+            displayName = "方法耗时插桩"
+        }
+    }
+}
+
+sourceSets {
+    main {
+        //traceMethod
+        java.srcDirs("../tracemethod/plugin/src/main")
+        resources.srcDirs("../tracemethod/plugin/src/main/resourcess")
+    }
+}
+
+
+publishing {
+    publications {
+        register<MavenPublication>("publish") {
+            repositories {
+                maven {
+                    name = "local"
+                    url = uri("file://${project.rootDir}/tracemethod/repo/plugin")
+                }
+            }
+            groupId = "com.ligh.tracemethod"
+            artifactId = "plugin"
+            version = "1.0.0"
+
+            from(components["java"])
+        }
+    }
+}

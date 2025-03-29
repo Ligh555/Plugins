@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.ligh.tracemethod",
+    "module": "ui",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ui-1.0.0.aar",
+          "url": "ui-1.0.0.aar",
+          "size": 1217152,
+          "sha512": "e98d365e4b92f9cc6a88b5fca7f27d4baae1b8714a99ec96b5f675f694d00c3d4fa3042e3fdcd0e96fbd84eeb6e39b217d330fa19970b53f2130835e14e5eb5b",
+          "sha256": "a6678cd517a58a328ae7a0b8ee298403cd9d957ddab36476e29385ed4324b02e",
+          "sha1": "ed9afb107c6536cb06f62b4ccc0c9c8e4ddd60a9",
+          "md5": "27df4ff46cba5d8a8a271ee0fb03d9a0"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        },
+        {
+          "group": "com.koushikdutta.async",
+          "module": "androidasync",
+          "version": {
+            "requires": "2.2.1"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.8.0"
+          }
+        },
+        {
+          "group": "io.reactivex.rxjava2",
+          "module": "rxjava",
+          "version": {
+            "requires": "2.2.2"
+          }
+        },
+        {
+          "group": "io.reactivex.rxjava2",
+          "module": "rxandroid",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "joda-time",
+          "module": "joda-time",
+          "version": {
+            "requires": "2.10.2"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.7.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.6.1"
+          }
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.4.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ui-1.0.0.aar",
+          "url": "ui-1.0.0.aar",
+          "size": 1217152,
+          "sha512": "e98d365e4b92f9cc6a88b5fca7f27d4baae1b8714a99ec96b5f675f694d00c3d4fa3042e3fdcd0e96fbd84eeb6e39b217d330fa19970b53f2130835e14e5eb5b",
+          "sha256": "a6678cd517a58a328ae7a0b8ee298403cd9d957ddab36476e29385ed4324b02e",
+          "sha1": "ed9afb107c6536cb06f62b4ccc0c9c8e4ddd60a9",
+          "md5": "27df4ff46cba5d8a8a271ee0fb03d9a0"
+        }
+      ]
+    }
+  ]
+}

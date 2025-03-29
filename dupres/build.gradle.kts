@@ -10,6 +10,8 @@ plugins {
     `kotlin-dsl` //等同于 id("org.gradle.kotlin.kotlin-dsl") version "4.1.2"
     // 也可以用 id("org.jetbrains.kotlin.jvm") version "1.9.10" apply true (不建议，这个只有Kotlin的语法，而没有Kotlin DSL的语法)
 
+    `maven-publish`
+
 }
 
 val kotlinVersion = "1.7.20"
@@ -56,12 +58,10 @@ dependencies {
 gradlePlugin {
     plugins {
         register("test") {
-            id = "com.ligh.test"
-//            implementationClass = "com.ligh.plugin.TestPlugin"
-//            implementationClass = "com.ligh.plugin.ResPlugin"
-            implementationClass = "cn.cxzheng.tracemanplugin.TraceManPlugin"
-            description = "A plugin for test"
-            displayName = "Test Plugin"
+            id = "com.ligh.dupres"
+            implementationClass = "com.ligh.plugin.ResPlugin"
+            description = "重复资源删减插件"
+            displayName = "重复资源删减"
         }
     }
 }
@@ -74,16 +74,21 @@ sourceSets {
     }
 }
 
-//publishing {
-//    publications {
-//        register<MavenPublication>("publish") {
-//            groupId = "com.ligh.res"
-//            artifactId = "res"
-//            version = "3.0.0-SNAPSHOT"
-//
-//            from(components["java"])
-//        }
-//    }
-//}
-//
-//
+publishing {
+    publications {
+        register<MavenPublication>("publish") {
+            repositories {
+                maven {
+                    name = "local"
+                    url = uri("file://${project.rootDir}/dupres/repo")
+                }
+            }
+            groupId = "com.ligh.res"
+            artifactId = "dupres"
+            version = "1.0.0"
+
+            from(components["java"])
+        }
+    }
+}
+

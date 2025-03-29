@@ -33,22 +33,3 @@ dependencies {
     implementation("commons-io:commons-io:2.11.0")
 }
 
-gradlePlugin {
-    plugins {
-        register("test") {
-            id = "com.ligh.test"
-            implementationClass = "cn.cxzheng.tracemanplugin.TraceManPlugin"
-            description = "A plugin for test"
-            displayName = "Test Plugin"
-        }
-    }
-}
-
-sourceSets {
-    main {
-        //traceMethod
-        java.srcDirs("../tracemethod/plugin/src/main")
-        groovy.srcDirs("../tracemethod/plugin/src/main")
-        resources.srcDirs("../tracemethod/plugin/src/main/resourcess")
-    }
-}

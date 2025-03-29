@@ -12,6 +12,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/dupres" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/tracemethod" />
+            <option value="$PROJECT_DIR$/tracemethod/plugin" />
+            <option value="$PROJECT_DIR$/tracemethod/ui" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

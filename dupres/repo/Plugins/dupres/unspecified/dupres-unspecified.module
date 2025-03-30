@@ -1,0 +1,116 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "Plugins",
+    "module": "dupres",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "dupres-unspecified.jar",
+          "url": "dupres-unspecified.jar",
+          "size": 17784,
+          "sha512": "b9b597dd28c7c7ca475625b68827672860d55bb3f69002e9b78a32c0cb446a1c31267d358cd522ef09b55a31da384adb75e1e4c952d4c706766affb51aee3c39",
+          "sha256": "49db0705af716cbe9233e696086d51795100e4aa865370eef726a1aad261b148",
+          "sha1": "1843c7d6047cc14cbfea3fe7b92a18563a6244a6",
+          "md5": "035cae0a5817d81d80c75b71edd84963"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-gradle-plugin",
+          "version": {
+            "requires": "1.7.20"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "7.4.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.7.20"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "7.4.2"
+          },
+          "thirdPartyCompatibility": {
+            "artifactSelector": {
+              "name": "gradle",
+              "type": "jar",
+              "extension": "jar",
+              "classifier": "sources"
+            }
+          }
+        },
+        {
+          "group": "pink.madis.apk.arsc",
+          "module": "android-chunk-utils",
+          "version": {
+            "requires": "0.0.7"
+          }
+        },
+        {
+          "group": "org.javassist",
+          "module": "javassist",
+          "version": {
+            "requires": "3.29.2-GA"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dupres-unspecified.jar",
+          "url": "dupres-unspecified.jar",
+          "size": 17784,
+          "sha512": "b9b597dd28c7c7ca475625b68827672860d55bb3f69002e9b78a32c0cb446a1c31267d358cd522ef09b55a31da384adb75e1e4c952d4c706766affb51aee3c39",
+          "sha256": "49db0705af716cbe9233e696086d51795100e4aa865370eef726a1aad261b148",
+          "sha1": "1843c7d6047cc14cbfea3fe7b92a18563a6244a6",
+          "md5": "035cae0a5817d81d80c75b71edd84963"
+        }
+      ]
+    }
+  ]
+}
